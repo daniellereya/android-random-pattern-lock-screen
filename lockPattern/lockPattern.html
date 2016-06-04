@@ -1,0 +1,10 @@
+<svg viewBox="0 0 1000 1000" class="pattern-container">
+         <circle ng-attr-id="{{dot.row + '' + dot.col}}" ng-repeat="dot in dots" ng-attr-cx="{{getDotX(dot)}}" ng-attr-cy="{{getDotY(dot)}}" r="40" stroke="black" stroke-width="3" fill="red" />  
+         <line ng-repeat="line in model"
+            ng-attr-x1="{{getLineX(line.fromRow, line.fromCol)}}" 
+            ng-attr-y1="{{getLineY(line.fromRow, line.fromCol)}}" 
+            ng-attr-x2="{{getLineX(line.toRow, line.toCol)}}" 
+            ng-attr-y2="{{getLineY(line.toRow, line.toCol)}}" 
+            style="stroke:rgb(255,0,0);stroke-width:2" />
+    
+</svg>

@@ -1,0 +1,9 @@
+.pattern-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    
+    background-color: rgba(255, 200, 100, 0.5);
+}
