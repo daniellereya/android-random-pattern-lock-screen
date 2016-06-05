@@ -1,11 +1,26 @@
-<svg viewBox="0 0 1000 1000" class="pattern-container">
-         <circle ng-attr-id="{{dot.row + '' + dot.col}}" ng-repeat="dot in dots" ng-attr-cx="{{getDotX(dot)}}" ng-attr-cy="{{getDotY(dot)}}" r="40" 
-            class="dot" />  
-         <line class="line" ng-repeat="line in model"
-            ng-attr-x1="{{getLineX(line.from.row, line.from.col)}}" 
-            ng-attr-y1="{{getLineY(line.from.row, line.from.col)}}" 
-            ng-attr-x2="{{getLineX(line.to.row, line.to.col)}}" 
-            ng-attr-y2="{{getLineY(line.to.row, line.to.col)}}" 
-            />
+<div class="board-container">
+    <svg viewBox="0 0 1000 1000" class="pattern-container">
+         <circle ng-repeat="dot in dots" ng-attr-id="{{dot.row + '' + dot.col}}"  ng-attr-cx="{{getDotX(dot)}}" ng-attr-cy="{{getDotY(dot)}}" r="40" 
+            class="dot" />
+         <g ng-repeat="line in model">
+            <line class="line" 
+                ng-attr-x1="{{getLineX(line.from.row, line.from.col)}}" 
+                ng-attr-y1="{{getLineY(line.from.row, line.from.col)}}" 
+                ng-attr-x2="{{getLineX(line.to.row, line.to.col)}}" 
+                ng-attr-y2="{{getLineY(line.to.row, line.to.col)}}" 
+                />
+            <text ng-show="showNumbers" ng-attr-x="{{(getLineX(line.from.row, line.from.col) + getLineX(line.to.row, line.to.col))/2}}" 
+                  ng-attr-y="{{(getLineY(line.from.row, line.from.col) + getLineY(line.to.row, line.to.col))/2}}" font-family="Verdana" font-size="55" fill="red" > {{$index}} </text>
+          </g>  
     
-</svg>
+    </svg>
+    <div class="start-stop-button" ng-click="startStopClicked()">
+        {{isRunning ? "Stop" : "Start" }}
+    </div>
+    <div  class="show-hide-numbers-button" ng-click="showHideClicked()">
+        {{showNumbers ? "Hide" : "Show" }}
+    </div>
+    <div  class="permutation-count">
+        Permutation {{currentPatternIdx}} out of {{patterns.length}} permutations
+    </div>
+</div>
