@@ -12,63 +12,60 @@
     margin: auto;
     width: 500px;
     height: 500px;
-    
     background-color: black;
-    
-    
 }
 
 .dot {
-        stroke: lightblue;
-        stroke-width: 6; 
-        fill: white;    
-    }
+    stroke: lightblue;
+    stroke-width: 7; 
+    fill: white;    
+}
+
+.line {
+    stroke:white;
+    stroke-width: 8; 
+}
+
+.start-stop-button {
+    border: 1px solid whitesmoke;
+    position: absolute;
+    top: 550px;
+    left: 100px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    color: black;
+    background-color: dodgerblue;
+    text-align: center;
+}
+
+.start-stop-button:hover {
+    background-color: deepskyblue;
+    cursor: pointer;
+}
+
+.show-hide-numbers-button {
+    border: 1px solid whitesmoke;
+    position: absolute;
+    top: 550px;
+    left: 290px;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    color: black;
+        background-color: dodgerblue;
+    text-align: center;
+}
+
+.show-hide-numbers-button:hover {
+    background-color: deepskyblue;
+    cursor: pointer;
+}
+
+.permutation-count {
     
-    .line {
-        stroke:white;
-        stroke-width: 8; 
-    }
-    
-    .start-stop-button {
-        position: absolute;
-        top: 550px;
-        left: 100px;
-        width: 120px;
-        height: 40px;
-        line-height: 40px;
-        color: black;
-         background-color: dodgerblue;
-        text-align: center;
-    }
-    
-    .start-stop-button:hover {
-        background-color: deepskyblue;
-        cursor: pointer;
-    }
-    
-    .show-hide-numbers-button {
-        border: 1px solid white;
-        position: absolute;
-        top: 550px;
-        left: 290px;
-        width: 120px;
-        height: 40px;
-        line-height: 40px;
-        color: black;
-         background-color: dodgerblue;
-        text-align: center;
-    }
-    
-    .show-hide-numbers-button:hover {
-        background-color: deepskyblue;
-        cursor: pointer;
-    }
-    
-    .permutation-count {
-        position: absolute;
-        top: 610px;
-        color: white;
-        left: 100px;
-    }
-    
-    
+    position: absolute;
+    top: 610px;
+    color: white;
+    left: 100px;
+}

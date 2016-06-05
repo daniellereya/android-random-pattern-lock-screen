@@ -14,7 +14,6 @@
             },
             controllerAs: "data",
             bindToController: true,
-            //TODO: solve issues with caching of templates for reusable comps
             templateUrl: "lockPattern/lockPattern.html",
             controller: LockPatternController
         };
@@ -26,7 +25,14 @@
 
         $scope.dots = [];
         $scope.patterns = [];
+        $scope.isRunning = false;
+        $scope.showNumbers = false;
+        $scope.currentPatternIdx = 0;
+        var drawPatternIntervalPromise = null;
 
+        initData();
+
+        /** Dots and Lines positioning */
         $scope.getDotX = function (dot) {
             return 100 + dot.col * 400;
         };
@@ -36,7 +42,7 @@
         };
 
         $scope.getLineX = function (row, col) {
-             return getDotProperty(row, col, 'cx');
+            return getDotProperty(row, col, 'cx');
         };
 
         $scope.getLineY = function (row, col) {
@@ -53,13 +59,7 @@
             return prop.baseVal.value;
         }
 
-
-        initData();
-        $scope.isRunning = false;
-        $scope.showNumbers = false;
-
-
-        var drawPatternIntervalPromise = null;
+        /** Click Handlers */
         $scope.startStopClicked = function () {
             if ($scope.isRunning) {
                 if (drawPatternIntervalPromise !== null) {
@@ -78,8 +78,22 @@
             $scope.showNumbers = !$scope.showNumbers;
         };
 
+        /** Patterns Handling */
+        function initData() {
+            for (var row = 0; row < 3; row++) {
+                for (var col = 0; col < 3; col++) {
 
-        $scope.currentPatternIdx = 0;
+                    // generate all the patterns from start point
+                    var startPoint = { 'row': row, 'col': col };
+                    var currentPointPatterns = getAvailablePatterns([startPoint], []);
+                    $scope.patterns = $scope.patterns.concat(currentPointPatterns);
+
+                    // add the point to the board
+                    $scope.dots.push(startPoint);
+                }
+            }
+        }
+
         function changePattern() {
             var currentPatternModel = [];
             if ($scope.patterns.length - 1 < $scope.currentPatternIdx) {
@@ -98,21 +112,6 @@
 
             $scope.model = currentPatternModel;
             $scope.currentPatternIdx++;
-        }
-
-        function initData() {
-            for (var row = 0; row < 3; row++) {
-                for (var col = 0; col < 3; col++) {
-
-                    // generate all the patterns from start point
-                    var startPoint = { 'row': row, 'col': col };
-                    var currentPointPatterns = getAvailablePatterns([startPoint], []);
-                    $scope.patterns = $scope.patterns.concat(currentPointPatterns);
-
-                    // add the point to the board
-                    $scope.dots.push(startPoint);
-                }
-            }
         }
 
         function getAvailablePatterns(visited, allPatterns) {
@@ -157,13 +156,11 @@
 
         function areEqual(pointA, pointB) {
             return pointA.row === pointB.row && pointA.col === pointB.col;
-
         }
 
         function isAdjacent(pointA, pointB) {
             return Math.abs(pointA.row - pointB.row) <= 1 && Math.abs(pointA.col - pointB.col) <= 1;
         }
-
 
         function isValidNotAdjacent(pointA, pointB, visited) {
             var rowDiff = Math.abs(pointA.row - pointB.row);
@@ -193,7 +190,6 @@
             }
             return false;
         }
-
 
     }//LockPatternController
 } ());
