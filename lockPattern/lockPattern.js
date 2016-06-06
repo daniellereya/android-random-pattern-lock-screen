@@ -9,11 +9,6 @@
     function lockPattern() {
         var directive = {
             restrict: "E",
-            scope: {
-
-            },
-            controllerAs: "data",
-            bindToController: true,
             templateUrl: "lockPattern/lockPattern.html",
             controller: LockPatternController
         };
@@ -173,7 +168,7 @@
                 (isVisited(visited, midPointRow, midPointCol));
             var d = (rowDiff === 0 && colDiff === 2) &&
                 (isVisited(visited, midPointRow, midPointCol));
-            var e = (rowDiff === 1 && colDiff === 1) &&
+            var e = (rowDiff === 2 && colDiff === 2) &&
                 (isVisited(visited, midPointRow, midPointCol));
             return a || b || c || d || e;
         }
